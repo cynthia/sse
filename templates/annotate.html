@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+    <main>
+        {% if done %}
+            <h4>All done!</h4>
+        {% else %}
+            <h4 class="heading">Sentence ID: {{ sentence_id }}</h4>
+            <div class="collection">
+                <a href="#!" class="collection-item">{{ source }}</a>
+            </div>
+        
+            {% if user_target %}
+                <div class="collection">
+                    <a href="#!" class="collection-item user-target">{{ user_target }}</a>
+                </div>
+            {% else %}
+                <div class="skip">Press <b>Esc/Space</b> if there are no similar sentences.</div>
+            {% endif %}
+            <div id="targets" class="collection">
+                {% for i, v in targets %}
+                    {% if i < 3 %}
+                        <a href="#!" class="collection-item sentences-lhs" onclick="annotate({{i}})">
+                            <span class="badge">{{ v[1] }}</span>
+                            <span class="sentence">{{ v[0] }}</span>
+                        </a>
+                        {% if i == 2 %}    
+                        <a href="#!" class="collection-item"></a>
+                        {% endif %}
+                    {% else %}
+                        <a href="#!" class="collection-item sentences-rhs" onclick="annotate({{i}})">
+                            <span class="badge">{{ v[1] }}</span>
+                            <span class="sentence">{{ v[0] }}</span>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div>
+            User ID: <span id="user-id">{{ user_id }}</span>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/static/app.js"></script>
+</body>

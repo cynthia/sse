@@ -1,0 +1,16 @@
+{
+  "sentences": [
+    {
+      "source": "source 1",
+      "target": "source 1 target 4"
+    },
+    {
+      "source": "source 2",
+      "target": "source 2 target 2"
+    },
+    {
+      "source": "source 3",
+      "target": "source 3 target 1"
+    }
+  ]
+}

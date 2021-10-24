@@ -1,0 +1,15 @@
+main {
+    padding: 0.75em; 
+}
+
+a.sentences-lhs {
+    color: teal !important;
+}
+
+a.sentences-rhs {
+    color: fuchsia !important;
+}
+
+.user-target {
+    color: red !important;
+}
