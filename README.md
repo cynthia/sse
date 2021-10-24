@@ -7,6 +7,11 @@ This was written as a quick tool for a very specific type of annotation for a ma
 
 Name is intentionally confusing so that as little people use it as possible. This is not a well-written piece of software.
 
+Preview
+-------
+
+![Screenshot in action](screenshot.png)
+
 Requirements
 ------------
 
