@@ -4,38 +4,31 @@
     <link rel="stylesheet" href="/static/app.css">
 </head>
 <body>
+    {% if not done %}
+        <header class="site-header">
+            <div class="heading">Sentence ID: {{ sentence_id }}</div>
+            <div class="collection">
+                <a href="#!" class="collection-item">{{ source }}</a>
+            </div>
+        </header>
+    {% endif %}
     <main>
         {% if done %}
             <h4>All done!</h4>
         {% else %}
-            <h4 class="heading">Sentence ID: {{ sentence_id }}</h4>
-            <div class="collection">
-                <a href="#!" class="collection-item">{{ source }}</a>
-            </div>
-        
             {% if user_target %}
                 <div class="collection">
                     <a href="#!" class="collection-item user-target">{{ user_target }}</a>
                 </div>
             {% else %}
-                <div class="skip">Press <b>Esc/Space</b> if there are no similar sentences.</div>
+                <div class="skip">Press <b>Esc</b> if there are no similar sentences.</div>
             {% endif %}
             <div id="targets" class="collection">
                 {% for i, v in targets %}
-                    {% if i < 3 %}
-                        <a href="#!" class="collection-item sentences-lhs" onclick="annotate({{i}})">
-                            <span class="badge">{{ v[1] }}</span>
-                            <span class="sentence">{{ v[0] }}</span>
-                        </a>
-                        {% if i == 2 %}    
-                        <a href="#!" class="collection-item"></a>
-                        {% endif %}
-                    {% else %}
-                        <a href="#!" class="collection-item sentences-rhs" onclick="annotate({{i}})">
-                            <span class="badge">{{ v[1] }}</span>
-                            <span class="sentence">{{ v[0] }}</span>
-                        </a>
-                    {% endif %}
+                    <a href="#!" class="collection-item sentences-rhs" onclick="annotate({{i}})">
+                        <span class="badge">{{ v[1] }}</span>
+                        <span class="sentence">{{ v[0] }}</span>
+                    </a>
                 {% endfor %}
             </div>
         {% endif %}

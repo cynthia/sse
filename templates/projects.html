@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+    <main>
+        <h4 class="heading">Projects</h4>
+        <div id="targets" class="collection">
+            {% for project in projects %}
+                <a href="/go/{{ project }}" class="collection-item sentences-lhs" onclick="annotate({{i}})">
+                    <span class="badge"></span>
+                    <span class="sentence">{{ project }}</span>
+                </a>
+            {% endfor %}
+        </div>
+        <div>
+            User ID: <span id="user-id">{{ user_id }}</span>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/static/app.js"></script>
+</body>

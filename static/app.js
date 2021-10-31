@@ -1,19 +1,24 @@
 function annotate(idx) {
-    let sentence = idx < 0 ? 'N/A' : document.querySelectorAll('#targets .sentence')[idx].textContent;
+    let sentence = idx < 0 ? 'No match' : document.querySelectorAll('#targets .sentence')[idx].textContent;
     let encodedSentence = encodeURIComponent(sentence);
-    let sentenceID = parseInt(location.pathname.split('/').reverse()[0])
 
-    fetch('/write_annotation/' + sentenceID + '/' + encodedSentence)
+    let fragments = location.pathname.split('/')
+    let project = fragments[2]
+    let sentenceID = parseInt(fragments[fragments.length - 1])
+
+    fetch(`/write_annotation/${project}/${sentenceID}/${encodedSentence}`)
         .then((r) => r.json())
         .then((o) => {
             console.log(o);
             if (o.status) {
-                location.href = '/annotate/' + (++sentenceID);
+                location.href = `/annotate/${project}/${++sentenceID}`;
             }
         });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('main').style.marginTop = (document.querySelector('.site-header').offsetHeight) + 'px'
+
     document.addEventListener('keyup', (e) => {
         let k = e.key.toLowerCase()
 
@@ -23,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        if (e.code == 'Space' || e.code == 'Escape') {
+        if (e.code == 'Escape') {
             annotate(-1);
         }
     });
